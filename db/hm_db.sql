@@ -4,122 +4,32 @@ FLUSH PRIVILEGES;
 
 USE hm_db;
 
-# Patient Table
-create table patient (
+# Department Table
+create table department (
 	id INT,
-	emergency_id INT,
-	first_name VARCHAR(50),
-	last_name VARCHAR(50),
-	birth_date DATE,
-	age INT,
-	sex VARCHAR(50),
+	dept_name VARCHAR(18),
+	dept_head VARCHAR(50),
 	address VARCHAR(50),
-	language VARCHAR(50),
-	medical_history TEXT,
-	primary_care_id int,
-    PRIMARY KEY (id),
-    FOREIGN KEY (emergency_id) REFERENCES e_contact (id),
-    FOREIGN KEY (primary_care_id) REFERENCES doctor (id)
+	num_employees INT,
+	primary key (id)
 );
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (1, 35, 'Kelsey', 'Pothbury', '8/27/1935', 87, 'Female', '6 Petterle Road', 'Catalan', 'curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec', 23);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (2, 44, 'Klement', 'Kock', '2/21/1909', 113, 'Male', '476 Wayridge Lane', 'Polish', 'in congue etiam justo etiam pretium iaculis justo in hac habitasse', 24);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (3, 22, 'Turner', 'Harrie', '6/9/1950', 72, 'Male', '49239 Oxford Street', 'Nepali', 'odio odio elementum eu interdum eu tincidunt in leo maecenas', 29);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (4, 4, 'Carlye', 'Rounding', '5/31/1990', 32, 'Female', '938 Michigan Center', 'Azeri', 'parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum', 11);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (5, 1, 'Sybil', 'Crewe', '2/5/2000', 22, 'Female', '7790 Steensland Trail', 'Khmer', 'odio justo sollicitudin ut suscipit a feugiat et eros vestibulum', 5);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (6, 20, 'Tannie', 'Hares', '5/26/1934', 88, 'Male', '40 Merry Trail', 'Persian', 'etiam faucibus cursus urna ut tellus nulla ut erat id mauris', 35);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (7, 5, 'Zsa zsa', 'Sharphouse', '7/16/1995', 27, 'Female', '74471 Jay Terrace', 'Punjabi', 'in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit', 34);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (8, 48, 'Alayne', 'Alflatt', '11/13/1959', 63, 'Female', '6511 Novick Circle', 'Telugu', 'libero non mattis pulvinar nulla pede ullamcorper augue a suscipit', 33);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (9, 27, 'Rahal', 'Bisgrove', '5/19/2004', 18, 'Female', '42 Dottie Avenue', 'Khmer', 'nulla justo aliquam quis turpis eget elit sodales scelerisque mauris', 2);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (10, 45, 'Jenine', 'Maylard', '11/13/1986', 36, 'Female', '225 Tennessee Lane', 'Finnish', 'luctus nec molestie sed justo pellentesque viverra pede ac diam', 26);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (11, 11, 'Bennie', 'Blodget', '1/13/1918', 105, 'Male', '540 Kim Terrace', 'Persian', 'lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio', 25);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (12, 43, 'Edward', 'Giorgiutti', '5/17/1939', 83, 'Male', '8495 School Alley', 'Zulu', 'sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus', 41);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (13, 42, 'Charmion', 'Botwright', '10/12/1953', 69, 'Female', '051 Claremont Junction', 'Swahili', 'pede ac diam cras pellentesque volutpat dui maecenas tristique est et', 1);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (14, 17, 'Yvonne', 'Launder', '12/27/2015', 7, 'Female', '48 Old Gate Park', 'Quechua', 'sapien quis libero nullam sit amet turpis elementum ligula vehicula', 4);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (15, 7, 'Burton', 'Gooderridge', '6/9/1925', 97, 'Male', '0828 Northport Parkway', 'Danish', 'aliquet maecenas leo odio condimentum id luctus nec molestie sed justo', 10);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (16, 37, 'Judie', 'Eglese', '6/24/1924', 98, 'Female', '548 Bultman Way', 'Tajik', 'velit donec diam neque vestibulum eget vulputate ut ultrices vel', 28);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (17, 3, 'Mario', 'Carroll', '6/17/1941', 81, 'Male', '2 High Crossing Way', 'Indonesian', 'sed interdum venenatis turpis enim blandit mi in porttitor pede justo', 6);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (18, 25, 'Stanislaus', 'Gozney', '8/23/1922', 100, 'Male', '8206 Susan Circle', 'Polish', 'fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet cursus', 42);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (19, 38, 'Elianora', 'Thunders', '8/12/1956', 66, 'Female', '5706 American Ash Road', 'Marathi', 'interdum mauris ullamcorper purus sit amet nulla quisque arcu libero rutrum', 9);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (20, 10, 'Jo-anne', 'Stearnes', '4/3/2005', 17, 'Female', '53253 International Trail', 'Danish', 'sollicitudin ut suscipit a feugiat et eros vestibulum ac est', 20);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (21, 24, 'Herb', 'Laxtonne', '12/29/1959', 63, 'Male', '65 Grasskamp Parkway', 'Icelandic', 'auctor sed tristique in tempus sit amet sem fusce consequat nulla', 7);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (22, 34, 'Oneida', 'Tresler', '12/15/1945', 77, 'Female', '47 Declaration Point', 'Tetum', 'aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien', 32);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (23, 30, 'Kurtis', 'Harbinson', '6/7/1992', 30, 'Male', '680 Pennsylvania Junction', 'Kannada', 'et ultrices posuere cubilia curae donec pharetra magna vestibulum aliquet', 38);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (24, 9, 'Rania', 'Alves', '11/12/1981', 41, 'Female', '26 Larry Lane', 'Bislama', 'mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus', 36);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (25, 19, 'Stephenie', 'Roderighi', '8/19/1924', 98, 'Female', '36 Roth Alley', 'Kyrgyz', 'etiam pretium iaculis justo in hac habitasse platea dictumst etiam', 27);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (26, 15, 'Geno', 'Brayshaw', '8/1/1939', 83, 'Male', '0 Florence Street', 'Guaraní', 'molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc', 22);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (27, 32, 'Blanca', 'Siward', '2/20/1950', 72, 'Female', '8 Esch Circle', 'Oriya', 'at turpis a pede posuere nonummy integer non velit donec', 18);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (28, 21, 'Barry', 'Bussy', '2/8/1904', 118, 'Male', '85 Thompson Parkway', 'French', 'turpis donec posuere metus vitae ipsum aliquam non mauris morbi non', 31);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (29, 41, 'Georges', 'Hawton', '9/29/1912', 110, 'Male', '3 Quincy Crossing', 'Polish', 'faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor', 21);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (30, 18, 'Constantino', 'Berni', '6/24/2009', 13, 'Male', '3946 Logan Point', 'Swati', 'a feugiat et eros vestibulum ac est lacinia nisi venenatis', 39);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (31, 50, 'Carmina', 'Mesant', '1/27/2016', 6, 'Female', '687 Barby Place', 'German', 'pretium iaculis justo in hac habitasse platea dictumst etiam faucibus', 3);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (32, 23, 'Wildon', 'Hugnin', '12/4/1902', 120, 'Male', '93 Stang Court', 'Tetum', 'at velit eu est congue elementum in hac habitasse platea dictumst', 37);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (33, 46, 'Marylynne', 'Ollarenshaw', '12/22/1916', 106, 'Female', '62 Delaware Lane', 'Icelandic', 'eu sapien cursus vestibulum proin eu mi nulla ac enim in', 30);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (34, 26, 'Andreas', 'Milesap', '7/14/1962', 60, 'Male', '258 West Park', 'Indonesian', 'praesent blandit nam nulla integer pede justo lacinia eget tincidunt', 8);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (35, 8, 'Danit', 'Lidyard', '1/25/1981', 41, 'Female', '05143 Dawn Court', 'Portuguese', 'parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum', 16);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (36, 33, 'Teodorico', 'Woodroofe', '8/30/1994', 28, 'Male', '33049 Di Loreto Lane', 'Moldovan', 'sit amet consectetuer adipiscing elit proin interdum mauris non ligula', 19);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (37, 36, 'Jimmy', 'Foffano', '7/3/1953', 69, 'Male', '6 Oneill Plaza', 'Ndebele', 'nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue', 15);
-insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (38, 13, 'Cointon', 'Lowden', '12/28/1956', 66, 'Male', '9563 Marcy Way', 'Latvian', 'id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu', 17);
-
-# Emergency Contact Table
-create table e_contact (
-	id INT,
-	first_name VARCHAR(50),
-	last_name VARCHAR(50),
-	email VARCHAR(50),
-	contact VARCHAR(50),
-	relationship VARCHAR(50),
-	PRIMARY KEY (id)
-);
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (1, 'Bonnibelle', 'Beardsall', 'bbeardsall0@themeforest.net', '(225) 8976054', 'Mother');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (2, 'Jemmie', 'Morales', 'jmorales1@yelp.com', '(919) 3833861', 'Sibling');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (3, 'Patience', 'Beauly', 'pbeauly2@nymag.com', '(191) 5082006', 'Caretaker');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (4, 'Sib', 'Bode', 'sbode3@latimes.com', '(240) 5471493', 'Child');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (5, 'Lianne', 'Longford', 'llongford4@salon.com', '(566) 7208516', 'Father');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (6, 'Nil', 'Seaward', 'nseaward5@mozilla.com', '(286) 6752158', 'Child');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (7, 'Sheryl', 'Weatherhogg', 'sweatherhogg6@kickstarter.com', '(446) 8163300', 'Father');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (8, 'Caryn', 'Lempel', 'clempel7@ca.gov', '(126) 4957631', 'Father');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (9, 'Crystie', 'Slowgrave', 'cslowgrave8@w3.org', '(445) 5930025', 'Partner');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (10, 'Artemis', 'Harberer', 'aharberer9@rakuten.co.jp', '(108) 9902884', 'Child');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (11, 'Jessika', 'Downie', 'jdowniea@exblog.jp', '(570) 9388173', 'Mother');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (12, 'Deb', 'Ockleshaw', 'dockleshawb@webs.com', '(650) 9342624', 'Guardian');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (13, 'Bethina', 'Montez', 'bmontezc@list-manage.com', '(769) 7010055', 'Employee');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (14, 'Clifford', 'Santus', 'csantusd@yellowbook.com', '(320) 9261481', 'Relative');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (15, 'Becki', 'Dahler', 'bdahlere@geocities.com', '(760) 6362643', 'Employee');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (16, 'Kaja', 'Huckerby', 'khuckerbyf@quantcast.com', '(798) 9416478', 'Partner');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (17, 'Cristionna', 'Gumbley', 'cgumbleyg@theatlantic.com', '(187) 3547519', 'Child');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (18, 'Caren', 'Illidge', 'cillidgeh@shinystat.com', '(445) 5272838', 'Guardian');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (19, 'Milt', 'Birwhistle', 'mbirwhistlei@gizmodo.com', '(942) 8621732', 'Partner');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (20, 'Billye', 'Foulis', 'bfoulisj@indiatimes.com', '(804) 7880092', 'Partner');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (21, 'Serene', 'Drohane', 'sdrohanek@comcast.net', '(662) 4063934', 'Mother');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (22, 'Martainn', 'Bencher', 'mbencherl@tinyurl.com', '(973) 4402334', 'Father');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (23, 'Miranda', 'Gavaghan', 'mgavaghanm@flavors.me', '(506) 7702066', 'Employee');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (24, 'Lexine', 'Alcido', 'lalcidon@wsj.com', '(553) 6868612', 'Employee');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (25, 'Bevan', 'Burrill', 'bburrillo@infoseek.co.jp', '(235) 7140861', 'Employer');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (26, 'Wally', 'Yetts', 'wyettsp@un.org', '(758) 5377003', 'Employee');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (27, 'Corie', 'Tyrone', 'ctyroneq@apple.com', '(389) 1456731', 'Employer');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (28, 'Winona', 'Barta', 'wbartar@sciencedirect.com', '(943) 5846469', 'Sibling');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (29, 'Karolina', 'Hryniewicz', 'khryniewiczs@discuz.net', '(329) 9399386', 'Relative');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (30, 'Rosella', 'Wallwood', 'rwallwoodt@shareasale.com', '(872) 1001066', 'Employee');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (31, 'Dean', 'Newbery', 'dnewberyu@storify.com', '(833) 5073294', 'Sibling');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (32, 'Romy', 'Derby', 'rderbyv@4shared.com', '(929) 5595146', 'Child');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (33, 'Dur', 'Ranfield', 'dranfieldw@pagesperso-orange.fr', '(957) 9324474', 'Caretaker');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (34, 'Myranda', 'Baybutt', 'mbaybuttx@typepad.com', '(970) 9538007', 'Partner');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (35, 'Opal', 'Stacy', 'ostacyy@bizjournals.com', '(662) 9213322', 'Sibling');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (36, 'Paddie', 'Jest', 'pjestz@microsoft.com', '(102) 2747754', 'Employer');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (37, 'Pauletta', 'Normington', 'pnormington10@phpbb.com', '(460) 6881830', 'Father');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (38, 'Jason', 'Cotillard', 'jcotillard11@w3.org', '(923) 8196805', 'Caretaker');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (39, 'Emmy', 'Keningley', 'ekeningley12@icio.us', '(808) 5228757', 'Sibling');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (40, 'Haley', 'Coger', 'hcoger13@state.tx.us', '(370) 7007990', 'Employee');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (41, 'Sinclare', 'Marcus', 'smarcus14@odnoklassniki.ru', '(359) 1862981', 'Sibling');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (42, 'Vivia', 'Jeakins', 'vjeakins15@telegraph.co.uk', '(836) 6832251', 'Father');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (43, 'Hyacinth', 'Allder', 'hallder16@last.fm', '(312) 1756549', 'Relative');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (44, 'Corinna', 'Odby', 'codby17@fotki.com', '(703) 4697818', 'Guardian');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (45, 'Graehme', 'Veck', 'gveck18@mail.ru', '(902) 3254866', 'Mother');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (46, 'Mina', 'Vaneschi', 'mvaneschi19@yellowbook.com', '(239) 1350810', 'Father');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (47, 'Valentia', 'Longden', 'vlongden1a@ftc.gov', '(680) 2031214', 'Caretaker');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (48, 'Sarajane', 'Benasik', 'sbenasik1b@drupal.org', '(537) 8908817', 'Father');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (49, 'Dani', 'Luetkemeyers', 'dluetkemeyers1c@wikimedia.org', '(960) 7445479', 'Relative');
-insert into e_contact (id, first_name, last_name, email, contact, relationship) values (50, 'Aprilette', 'Babbe', 'ababbe1d@fema.gov', '(522) 8607492', 'Mother');
+insert into department (id, dept_name, dept_head, address, num_employees) values (1, 'medicine', 'Hartwell Puckring', '3299 Harbort Park', 930);
+insert into department (id, dept_name, dept_head, address, num_employees) values (2, 'surgery', 'Debora Caspell', '861 Sherman Junction', 887);
+insert into department (id, dept_name, dept_head, address, num_employees) values (3, 'gynaecology', 'Wayland Simnel', '1 Moulton Way', 897);
+insert into department (id, dept_name, dept_head, address, num_employees) values (4, 'obstetrics', 'Ines De Vaar', '29745 Mallard Lane', 220);
+insert into department (id, dept_name, dept_head, address, num_employees) values (5, 'paediatrics', 'Cassie Halsall', '6225 Rowland Park', 702);
+insert into department (id, dept_name, dept_head, address, num_employees) values (6, 'eye', 'Eartha Gromley', '5 Bobwhite Center', 555);
+insert into department (id, dept_name, dept_head, address, num_employees) values (7, 'ENT', 'Kattie Whitehead', '1 Vera Terrace', 962);
+insert into department (id, dept_name, dept_head, address, num_employees) values (8, 'dental', 'Tanny Hamelyn', '15 Larry Road', 882);
+insert into department (id, dept_name, dept_head, address, num_employees) values (9, 'orthopaedics', 'Andree Lavelle', '34800 Glendale Alley', 996);
+insert into department (id, dept_name, dept_head, address, num_employees) values (10, 'neurology', 'Ted McGuffie', '53776 Maple Wood Street', 537);
+insert into department (id, dept_name, dept_head, address, num_employees) values (11, 'cardiology', 'Stephi Guice', '9920 Thackeray Plaza', 335);
+insert into department (id, dept_name, dept_head, address, num_employees) values (12, 'psychiatry', 'Ronda McAuslene', '87581 Scofield Trail', 745);
+insert into department (id, dept_name, dept_head, address, num_employees) values (13, 'skin', 'Lorens Matas', '83 Jana Drive', 433);
+insert into department (id, dept_name, dept_head, address, num_employees) values (14, 'V.D.', 'Sosanna Conring', '29303 Crowley Avenue', 284);
+insert into department (id, dept_name, dept_head, address, num_employees) values (15, 'plastic surgery', 'Lonna Mobbs', '8501 Milwaukee Trail', 691);
+insert into department (id, dept_name, dept_head, address, num_employees) values (16, 'nuclear medicine', 'Flory Clousley', '8062 Sachs Center', 963);
+insert into department (id, dept_name, dept_head, address, num_employees) values (17, 'infectious disease', 'Frasier Spollen', '935 Lotheville Terrace', 396);
 
 # Doctor Table
 create table doctor (
@@ -128,10 +38,10 @@ create table doctor (
 	first_name VARCHAR(50),
 	last_name VARCHAR(50),
 	language VARCHAR(50),
-	hire_date DATE,
+	hire_date VARCHAR(50),
 	status VARCHAR(50),
 	shift VARCHAR(50),
-	education VARCHAR(50),
+	education VARCHAR(200),
 	PRIMARY KEY (id),
 	FOREIGN KEY (dept_id) REFERENCES department (id)
 );
@@ -178,6 +88,123 @@ insert into doctor (id, dept_id, first_name, last_name, language, hire_date, sta
 insert into doctor (id, dept_id, first_name, last_name, language, hire_date, status, shift, education) values (41, 15, 'Edwin', 'Jarvie', 'Malay', '5/25/2017', 'Visiting', 'MWTh', 'Alain University of Science and Technology');
 insert into doctor (id, dept_id, first_name, last_name, language, hire_date, status, shift, education) values (42, 13, 'Lanette', 'Anning', 'Kyrgyz', '8/28/2014', 'Permanent', 'MWTh', 'Minnesota School of Professional Psychology');
 
+# Emergency Contact Table
+create table emergency_contact (
+	id INT,
+	first_name VARCHAR(50),
+	last_name VARCHAR(50),
+	email VARCHAR(50),
+	contact VARCHAR(50),
+	relationship VARCHAR(50),
+	PRIMARY KEY (id)
+);
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (1, 'Bonnibelle', 'Beardsall', 'bbeardsall0@themeforest.net', '(225) 8976054', 'Mother');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (2, 'Jemmie', 'Morales', 'jmorales1@yelp.com', '(919) 3833861', 'Sibling');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (3, 'Patience', 'Beauly', 'pbeauly2@nymag.com', '(191) 5082006', 'Caretaker');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (4, 'Sib', 'Bode', 'sbode3@latimes.com', '(240) 5471493', 'Child');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (5, 'Lianne', 'Longford', 'llongford4@salon.com', '(566) 7208516', 'Father');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (6, 'Nil', 'Seaward', 'nseaward5@mozilla.com', '(286) 6752158', 'Child');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (7, 'Sheryl', 'Weatherhogg', 'sweatherhogg6@kickstarter.com', '(446) 8163300', 'Father');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (8, 'Caryn', 'Lempel', 'clempel7@ca.gov', '(126) 4957631', 'Father');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (9, 'Crystie', 'Slowgrave', 'cslowgrave8@w3.org', '(445) 5930025', 'Partner');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (10, 'Artemis', 'Harberer', 'aharberer9@rakuten.co.jp', '(108) 9902884', 'Child');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (11, 'Jessika', 'Downie', 'jdowniea@exblog.jp', '(570) 9388173', 'Mother');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (12, 'Deb', 'Ockleshaw', 'dockleshawb@webs.com', '(650) 9342624', 'Guardian');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (13, 'Bethina', 'Montez', 'bmontezc@list-manage.com', '(769) 7010055', 'Employee');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (14, 'Clifford', 'Santus', 'csantusd@yellowbook.com', '(320) 9261481', 'Relative');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (15, 'Becki', 'Dahler', 'bdahlere@geocities.com', '(760) 6362643', 'Employee');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (16, 'Kaja', 'Huckerby', 'khuckerbyf@quantcast.com', '(798) 9416478', 'Partner');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (17, 'Cristionna', 'Gumbley', 'cgumbleyg@theatlantic.com', '(187) 3547519', 'Child');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (18, 'Caren', 'Illidge', 'cillidgeh@shinystat.com', '(445) 5272838', 'Guardian');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (19, 'Milt', 'Birwhistle', 'mbirwhistlei@gizmodo.com', '(942) 8621732', 'Partner');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (20, 'Billye', 'Foulis', 'bfoulisj@indiatimes.com', '(804) 7880092', 'Partner');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (21, 'Serene', 'Drohane', 'sdrohanek@comcast.net', '(662) 4063934', 'Mother');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (22, 'Martainn', 'Bencher', 'mbencherl@tinyurl.com', '(973) 4402334', 'Father');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (23, 'Miranda', 'Gavaghan', 'mgavaghanm@flavors.me', '(506) 7702066', 'Employee');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (24, 'Lexine', 'Alcido', 'lalcidon@wsj.com', '(553) 6868612', 'Employee');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (25, 'Bevan', 'Burrill', 'bburrillo@infoseek.co.jp', '(235) 7140861', 'Employer');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (26, 'Wally', 'Yetts', 'wyettsp@un.org', '(758) 5377003', 'Employee');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (27, 'Corie', 'Tyrone', 'ctyroneq@apple.com', '(389) 1456731', 'Employer');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (28, 'Winona', 'Barta', 'wbartar@sciencedirect.com', '(943) 5846469', 'Sibling');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (29, 'Karolina', 'Hryniewicz', 'khryniewiczs@discuz.net', '(329) 9399386', 'Relative');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (30, 'Rosella', 'Wallwood', 'rwallwoodt@shareasale.com', '(872) 1001066', 'Employee');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (31, 'Dean', 'Newbery', 'dnewberyu@storify.com', '(833) 5073294', 'Sibling');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (32, 'Romy', 'Derby', 'rderbyv@4shared.com', '(929) 5595146', 'Child');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (33, 'Dur', 'Ranfield', 'dranfieldw@pagesperso-orange.fr', '(957) 9324474', 'Caretaker');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (34, 'Myranda', 'Baybutt', 'mbaybuttx@typepad.com', '(970) 9538007', 'Partner');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (35, 'Opal', 'Stacy', 'ostacyy@bizjournals.com', '(662) 9213322', 'Sibling');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (36, 'Paddie', 'Jest', 'pjestz@microsoft.com', '(102) 2747754', 'Employer');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (37, 'Pauletta', 'Normington', 'pnormington10@phpbb.com', '(460) 6881830', 'Father');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (38, 'Jason', 'Cotillard', 'jcotillard11@w3.org', '(923) 8196805', 'Caretaker');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (39, 'Emmy', 'Keningley', 'ekeningley12@icio.us', '(808) 5228757', 'Sibling');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (40, 'Haley', 'Coger', 'hcoger13@state.tx.us', '(370) 7007990', 'Employee');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (41, 'Sinclare', 'Marcus', 'smarcus14@odnoklassniki.ru', '(359) 1862981', 'Sibling');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (42, 'Vivia', 'Jeakins', 'vjeakins15@telegraph.co.uk', '(836) 6832251', 'Father');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (43, 'Hyacinth', 'Allder', 'hallder16@last.fm', '(312) 1756549', 'Relative');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (44, 'Corinna', 'Odby', 'codby17@fotki.com', '(703) 4697818', 'Guardian');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (45, 'Graehme', 'Veck', 'gveck18@mail.ru', '(902) 3254866', 'Mother');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (46, 'Mina', 'Vaneschi', 'mvaneschi19@yellowbook.com', '(239) 1350810', 'Father');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (47, 'Valentia', 'Longden', 'vlongden1a@ftc.gov', '(680) 2031214', 'Caretaker');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (48, 'Sarajane', 'Benasik', 'sbenasik1b@drupal.org', '(537) 8908817', 'Father');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (49, 'Dani', 'Luetkemeyers', 'dluetkemeyers1c@wikimedia.org', '(960) 7445479', 'Relative');
+insert into emergency_contact (id, first_name, last_name, email, contact, relationship) values (50, 'Aprilette', 'Babbe', 'ababbe1d@fema.gov', '(522) 8607492', 'Mother');
+
+# Patient Table
+create table patient (
+	id INT,
+	emergency_id INT,
+	first_name VARCHAR(50),
+	last_name VARCHAR(50),
+	birth_date VARCHAR(50),
+	age INT,
+	sex VARCHAR(50),
+	address VARCHAR(50),
+	language VARCHAR(50),
+	medical_history TEXT,
+	primary_care_id int,
+    PRIMARY KEY (id),
+    FOREIGN KEY (emergency_id) REFERENCES emergency_contact (id),
+    FOREIGN KEY (primary_care_id) REFERENCES doctor (id)
+);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (1, 35, 'Kelsey', 'Pothbury', '8/27/1935', 87, 'Female', '6 Petterle Road', 'Catalan', 'curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec', 23);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (2, 44, 'Klement', 'Kock', '2/21/1909', 113, 'Male', '476 Wayridge Lane', 'Polish', 'in congue etiam justo etiam pretium iaculis justo in hac habitasse', 24);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (3, 22, 'Turner', 'Harrie', '6/9/1950', 72, 'Male', '49239 Oxford Street', 'Nepali', 'odio odio elementum eu interdum eu tincidunt in leo maecenas', 29);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (4, 4, 'Carlye', 'Rounding', '5/31/1990', 32, 'Female', '938 Michigan Center', 'Azeri', 'parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum', 11);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (5, 1, 'Sybil', 'Crewe', '2/5/2000', 22, 'Female', '7790 Steensland Trail', 'Khmer', 'odio justo sollicitudin ut suscipit a feugiat et eros vestibulum', 5);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (6, 20, 'Tannie', 'Hares', '5/26/1934', 88, 'Male', '40 Merry Trail', 'Persian', 'etiam faucibus cursus urna ut tellus nulla ut erat id mauris', 35);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (7, 5, 'Zsa zsa', 'Sharphouse', '7/16/1995', 27, 'Female', '74471 Jay Terrace', 'Punjabi', 'in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit', 34);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (8, 48, 'Alayne', 'Alflatt', '11/13/1959', 63, 'Female', '6511 Novick Circle', 'Telugu', 'libero non mattis pulvinar nulla pede ullamcorper augue a suscipit', 33);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (9, 27, 'Rahal', 'Bisgrove', '5/19/2004', 18, 'Female', '42 Dottie Avenue', 'Khmer', 'nulla justo aliquam quis turpis eget elit sodales scelerisque mauris', 2);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (10, 45, 'Jenine', 'Maylard', '11/13/1986', 36, 'Female', '225 Tennessee Lane', 'Finnish', 'luctus nec molestie sed justo pellentesque viverra pede ac diam', 26);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (11, 11, 'Bennie', 'Blodget', '1/13/1918', 105, 'Male', '540 Kim Terrace', 'Persian', 'lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio', 25);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (12, 43, 'Edward', 'Giorgiutti', '5/17/1939', 83, 'Male', '8495 School Alley', 'Zulu', 'sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus', 41);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (13, 42, 'Charmion', 'Botwright', '10/12/1953', 69, 'Female', '051 Claremont Junction', 'Swahili', 'pede ac diam cras pellentesque volutpat dui maecenas tristique est et', 1);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (14, 17, 'Yvonne', 'Launder', '12/27/2015', 7, 'Female', '48 Old Gate Park', 'Quechua', 'sapien quis libero nullam sit amet turpis elementum ligula vehicula', 4);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (15, 7, 'Burton', 'Gooderridge', '6/9/1925', 97, 'Male', '0828 Northport Parkway', 'Danish', 'aliquet maecenas leo odio condimentum id luctus nec molestie sed justo', 10);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (16, 37, 'Judie', 'Eglese', '6/24/1924', 98, 'Female', '548 Bultman Way', 'Tajik', 'velit donec diam neque vestibulum eget vulputate ut ultrices vel', 28);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (17, 3, 'Mario', 'Carroll', '6/17/1941', 81, 'Male', '2 High Crossing Way', 'Indonesian', 'sed interdum venenatis turpis enim blandit mi in porttitor pede justo', 6);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (18, 25, 'Stanislaus', 'Gozney', '8/23/1922', 100, 'Male', '8206 Susan Circle', 'Polish', 'fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet cursus', 42);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (19, 38, 'Elianora', 'Thunders', '8/12/1956', 66, 'Female', '5706 American Ash Road', 'Marathi', 'interdum mauris ullamcorper purus sit amet nulla quisque arcu libero rutrum', 9);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (20, 10, 'Jo-anne', 'Stearnes', '4/3/2005', 17, 'Female', '53253 International Trail', 'Danish', 'sollicitudin ut suscipit a feugiat et eros vestibulum ac est', 20);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (21, 24, 'Herb', 'Laxtonne', '12/29/1959', 63, 'Male', '65 Grasskamp Parkway', 'Icelandic', 'auctor sed tristique in tempus sit amet sem fusce consequat nulla', 7);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (22, 34, 'Oneida', 'Tresler', '12/15/1945', 77, 'Female', '47 Declaration Point', 'Tetum', 'aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien', 32);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (23, 30, 'Kurtis', 'Harbinson', '6/7/1992', 30, 'Male', '680 Pennsylvania Junction', 'Kannada', 'et ultrices posuere cubilia curae donec pharetra magna vestibulum aliquet', 38);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (24, 9, 'Rania', 'Alves', '11/12/1981', 41, 'Female', '26 Larry Lane', 'Bislama', 'mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus', 36);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (25, 19, 'Stephenie', 'Roderighi', '8/19/1924', 98, 'Female', '36 Roth Alley', 'Kyrgyz', 'etiam pretium iaculis justo in hac habitasse platea dictumst etiam', 27);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (26, 15, 'Geno', 'Brayshaw', '8/1/1939', 83, 'Male', '0 Florence Street', 'Guaraní', 'molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc', 22);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (27, 32, 'Blanca', 'Siward', '2/20/1950', 72, 'Female', '8 Esch Circle', 'Oriya', 'at turpis a pede posuere nonummy integer non velit donec', 18);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (28, 21, 'Barry', 'Bussy', '2/8/1904', 118, 'Male', '85 Thompson Parkway', 'French', 'turpis donec posuere metus vitae ipsum aliquam non mauris morbi non', 31);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (29, 41, 'Georges', 'Hawton', '9/29/1912', 110, 'Male', '3 Quincy Crossing', 'Polish', 'faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor', 21);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (30, 18, 'Constantino', 'Berni', '6/24/2009', 13, 'Male', '3946 Logan Point', 'Swati', 'a feugiat et eros vestibulum ac est lacinia nisi venenatis', 39);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (31, 50, 'Carmina', 'Mesant', '1/27/2016', 6, 'Female', '687 Barby Place', 'German', 'pretium iaculis justo in hac habitasse platea dictumst etiam faucibus', 3);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (32, 23, 'Wildon', 'Hugnin', '12/4/1902', 120, 'Male', '93 Stang Court', 'Tetum', 'at velit eu est congue elementum in hac habitasse platea dictumst', 37);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (33, 46, 'Marylynne', 'Ollarenshaw', '12/22/1916', 106, 'Female', '62 Delaware Lane', 'Icelandic', 'eu sapien cursus vestibulum proin eu mi nulla ac enim in', 30);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (34, 26, 'Andreas', 'Milesap', '7/14/1962', 60, 'Male', '258 West Park', 'Indonesian', 'praesent blandit nam nulla integer pede justo lacinia eget tincidunt', 8);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (35, 8, 'Danit', 'Lidyard', '1/25/1981', 41, 'Female', '05143 Dawn Court', 'Portuguese', 'parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum', 16);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (36, 33, 'Teodorico', 'Woodroofe', '8/30/1994', 28, 'Male', '33049 Di Loreto Lane', 'Moldovan', 'sit amet consectetuer adipiscing elit proin interdum mauris non ligula', 19);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (37, 36, 'Jimmy', 'Foffano', '7/3/1953', 69, 'Male', '6 Oneill Plaza', 'Ndebele', 'nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue', 15);
+insert into patient (id, emergency_id, first_name, last_name, birth_date, age, sex, address, language, medical_history, primary_care_id) values (38, 13, 'Cointon', 'Lowden', '12/28/1956', 66, 'Male', '9563 Marcy Way', 'Latvian', 'id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu', 17);
+
 # Insurance Company Table
 create table insurance_company (
 	id INT,
@@ -213,33 +240,6 @@ insert into insurance_company (id, company_name, company_contact, company_addres
 insert into insurance_company (id, company_name, company_contact, company_address) values (25, 'Topicblab', 'gskipseao@blogger.com', '2 Eastlawn Parkway');
 insert into insurance_company (id, company_name, company_contact, company_address) values (26, 'Layo', 'pkobup@theatlantic.com', '533 Stephen Pass');
 
-# Department Table
-create table department (
-	id INT,
-	dept_name VARCHAR(18),
-	dept_head VARCHAR(50),
-	address VARCHAR(50),
-	num_employees INT,
-	primary key (id)
-);
-insert into department (id, dept_name, dept_head, address, num_employees) values (1, 'medicine', 'Hartwell Puckring', '3299 Harbort Park', 930);
-insert into department (id, dept_name, dept_head, address, num_employees) values (2, 'surgery', 'Debora Caspell', '861 Sherman Junction', 887);
-insert into department (id, dept_name, dept_head, address, num_employees) values (3, 'gynaecology', 'Wayland Simnel', '1 Moulton Way', 897);
-insert into department (id, dept_name, dept_head, address, num_employees) values (4, 'obstetrics', 'Ines De Vaar', '29745 Mallard Lane', 220);
-insert into department (id, dept_name, dept_head, address, num_employees) values (5, 'paediatrics', 'Cassie Halsall', '6225 Rowland Park', 702);
-insert into department (id, dept_name, dept_head, address, num_employees) values (6, 'eye', 'Eartha Gromley', '5 Bobwhite Center', 555);
-insert into department (id, dept_name, dept_head, address, num_employees) values (7, 'ENT', 'Kattie Whitehead', '1 Vera Terrace', 962);
-insert into department (id, dept_name, dept_head, address, num_employees) values (8, 'dental', 'Tanny Hamelyn', '15 Larry Road', 882);
-insert into department (id, dept_name, dept_head, address, num_employees) values (9, 'orthopaedics', 'Andree Lavelle', '34800 Glendale Alley', 996);
-insert into department (id, dept_name, dept_head, address, num_employees) values (10, 'neurology', 'Ted McGuffie', '53776 Maple Wood Street', 537);
-insert into department (id, dept_name, dept_head, address, num_employees) values (11, 'cardiology', 'Stephi Guice', '9920 Thackeray Plaza', 335);
-insert into department (id, dept_name, dept_head, address, num_employees) values (12, 'psychiatry', 'Ronda McAuslene', '87581 Scofield Trail', 745);
-insert into department (id, dept_name, dept_head, address, num_employees) values (13, 'skin', 'Lorens Matas', '83 Jana Drive', 433);
-insert into department (id, dept_name, dept_head, address, num_employees) values (14, 'V.D.', 'Sosanna Conring', '29303 Crowley Avenue', 284);
-insert into department (id, dept_name, dept_head, address, num_employees) values (15, 'plastic surgery', 'Lonna Mobbs', '8501 Milwaukee Trail', 691);
-insert into department (id, dept_name, dept_head, address, num_employees) values (16, 'nuclear medicine', 'Flory Clousley', '8062 Sachs Center', 963);
-insert into department (id, dept_name, dept_head, address, num_employees) values (17, 'infectious disease', 'Frasier Spollen', '935 Lotheville Terrace', 396);
-
 # Nurse Table
 create table nurse (
 	id INT,
@@ -247,7 +247,7 @@ create table nurse (
 	last_name VARCHAR(50),
 	contact VARCHAR(50),
 	language VARCHAR(50),
-	hire_date DATE,
+	hire_date VARCHAR(50),
 	PRIMARY KEY (id)
 );
 insert into nurse (id, first_name, last_name, contact, language, hire_date) values (1, 'Hallsy', 'Grichukhanov', '554-135-1761', 'Mongolian', '4/29/2014');
@@ -321,7 +321,7 @@ create table bill (
 	patient_id INT,
 	total INT,
 	items VARCHAR(6),
-	date DATE,
+	date VARCHAR(50),
 	PRIMARY KEY (id, patient_id),
 	FOREIGN KEY (patient_id) REFERENCES patient (id)
 );
@@ -486,6 +486,84 @@ insert into bill (id, patient_id, total, items, date) values (158, 33, 73130, 'i
 insert into bill (id, patient_id, total, items, date) values (159, 2, 11509, 'item 1', '7/1/2022');
 insert into bill (id, patient_id, total, items, date) values (160, 12, 24556, 'item 2', '11/27/2021');
 
+# Insurance Plan Table
+create table insurance_plan (
+	id INT,
+	provider_id INT,
+	patient_id INT,
+	plan_name TEXT,
+	yearly_cost INT,
+	covers TEXT,
+	PRIMARY KEY (id),
+	FOREIGN KEY (provider_id) REFERENCES insurance_company (id),
+	FOREIGN KEY (patient_id) REFERENCES patient (id)
+);
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (1, 21, 36, 'sollicitudin mi sit amet lobortis sapien sapien non mi integer ac', 2484, 'pede ac diam cras pellentesque volutpat dui maecenas tristique est et');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (2, 12, 29, 'sit amet eros suspendisse accumsan tortor quis turpis sed ante', 9222, 'cursus id turpis integer aliquet massa id lobortis convallis tortor risus dapibus augue vel accumsan tellus nisi eu');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (3, 3, 23, 'et tempus semper est quam pharetra magna ac consequat metus sapien', 6370, 'id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (4, 25, 27, 'nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque', 1743, 'sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (5, 20, 26, 'ipsum aliquam non mauris morbi non lectus aliquam sit amet diam', 2846, 'nec dui luctus rutrum nulla tellus in sagittis dui vel nisl duis ac');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (6, 23, 32, 'sed sagittis nam congue risus semper porta volutpat quam pede', 1119, 'in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (7, 2, 38, 'eu est congue elementum in hac habitasse platea dictumst morbi', 6314, 'tortor sollicitudin mi sit amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec dui');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (8, 6, 16, 'vel enim sit amet nunc viverra dapibus nulla suscipit ligula in', 7777, 'quis turpis eget elit sodales scelerisque mauris sit amet eros suspendisse');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (9, 17, 35, 'non pretium quis lectus suspendisse potenti in eleifend quam a odio', 2338, 'semper interdum mauris ullamcorper purus sit amet nulla quisque arcu libero rutrum');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (10, 14, 37, 'aenean fermentum donec ut mauris eget massa tempor convallis nulla', 5952, 'ligula suspendisse ornare consequat lectus in est risus auctor sed tristique in');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (11, 4, 3, 'enim leo rhoncus sed vestibulum sit amet cursus id turpis integer', 2403, 'sit amet lobortis sapien sapien non mi integer ac neque duis');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (12, 18, 34, 'suspendisse potenti in eleifend quam a odio in hac habitasse', 6506, 'tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (13, 16, 4, 'luctus et ultrices posuere cubilia curae duis faucibus accumsan odio', 3362, 'sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (14, 1, 9, 'sed interdum venenatis turpis enim blandit mi in porttitor pede', 7279, 'in eleifend quam a odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla mollis molestie');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (15, 15, 24, 'donec ut dolor morbi vel lectus in quam fringilla rhoncus', 4366, 'cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (16, 8, 18, 'vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa', 7606, 'in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (17, 22, 6, 'luctus et ultrices posuere cubilia curae duis faucibus accumsan odio', 4520, 'tellus nulla ut erat id mauris vulputate elementum nullam varius');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (18, 19, 25, 'vestibulum eget vulputate ut ultrices vel augue vestibulum ante ipsum primis', 9041, 'aliquet at feugiat non pretium quis lectus suspendisse potenti in eleifend');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (19, 24, 30, 'adipiscing elit proin risus praesent lectus vestibulum quam sapien varius ut', 1390, 'nisi volutpat eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (20, 26, 2, 'vel pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus', 8187, 'vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (21, 7, 13, 'donec dapibus duis at velit eu est congue elementum in', 7886, 'amet sem fusce consequat nulla nisl nunc nisl duis bibendum felis sed');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (22, 10, 19, 'fusce consequat nulla nisl nunc nisl duis bibendum felis sed', 5489, 'habitasse platea dictumst morbi vestibulum velit id pretium iaculis diam erat fermentum justo nec condimentum neque');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (23, 9, 5, 'metus vitae ipsum aliquam non mauris morbi non lectus aliquam', 4008, 'sagittis nam congue risus semper porta volutpat quam pede lobortis ligula sit amet');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (24, 13, 21, 'pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus in', 5983, 'phasellus sit amet erat nulla tempus vivamus in felis eu sapien cursus vestibulum proin eu mi nulla ac enim in');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (25, 5, 10, 'molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget', 8755, 'volutpat dui maecenas tristique est et tempus semper est quam pharetra magna ac consequat metus sapien ut nunc vestibulum');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (26, 11, 33, 'mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit', 6646, 'lacus purus aliquet at feugiat non pretium quis lectus suspendisse');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (27, 11, 11, 'purus sit amet nulla quisque arcu libero rutrum ac lobortis', 8540, 'nonummy integer non velit donec diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (28, 2, 15, 'mauris lacinia sapien quis libero nullam sit amet turpis elementum ligula', 7669, 'sit amet justo morbi ut odio cras mi pede malesuada');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (29, 8, 17, 'ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris', 1851, 'viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (30, 22, 14, 'platea dictumst etiam faucibus cursus urna ut tellus nulla ut', 9977, 'eros suspendisse accumsan tortor quis turpis sed ante vivamus tortor duis mattis');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (31, 14, 12, 'in quis justo maecenas rhoncus aliquam lacus morbi quis tortor', 3377, 'libero ut massa volutpat convallis morbi odio odio elementum eu');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (32, 25, 8, 'feugiat et eros vestibulum ac est lacinia nisi venenatis tristique', 2836, 'maecenas tincidunt lacus at velit vivamus vel nulla eget eros elementum pellentesque quisque porta volutpat');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (33, 18, 22, 'amet diam in magna bibendum imperdiet nullam orci pede venenatis non', 9948, 'lacus purus aliquet at feugiat non pretium quis lectus suspendisse potenti');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (34, 15, 1, 'est quam pharetra magna ac consequat metus sapien ut nunc', 3411, 'in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non pretium quis');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (35, 5, 31, 'potenti nullam porttitor lacus at turpis donec posuere metus vitae', 6772, 'vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non pretium');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (36, 9, 7, 'hac habitasse platea dictumst etiam faucibus cursus urna ut tellus', 7317, 'amet nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus semper interdum mauris ullamcorper');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (37, 19, 28, 'at velit eu est congue elementum in hac habitasse platea', 4357, 'vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget orci');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (38, 1, 20, 'justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis', 8307, 'neque sapien placerat ante nulla justo aliquam quis turpis eget');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (39, 10, 38, 'lacus morbi quis tortor id nulla ultrices aliquet maecenas leo', 1584, 'convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (40, 23, 8, 'gravida nisi at nibh in hac habitasse platea dictumst aliquam', 5093, 'eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (41, 21, 31, 'vitae ipsum aliquam non mauris morbi non lectus aliquam sit amet', 9551, 'mauris lacinia sapien quis libero nullam sit amet turpis elementum ligula vehicula consequat');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (42, 7, 4, 'curae donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi', 9563, 'neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo sit amet sapien');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (43, 6, 18, 'suscipit nulla elit ac nulla sed vel enim sit amet', 3469, 'sed augue aliquam erat volutpat in congue etiam justo etiam pretium iaculis justo in');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (44, 16, 25, 'posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet', 5453, 'in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (45, 12, 14, 'mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh', 2014, 'consectetuer adipiscing elit proin risus praesent lectus vestibulum quam sapien varius');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (46, 24, 17, 'ipsum integer a nibh in quis justo maecenas rhoncus aliquam', 7906, 'gravida nisi at nibh in hac habitasse platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (47, 26, 33, 'nulla nisl nunc nisl duis bibendum felis sed interdum venenatis turpis', 5794, 'fusce congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (48, 17, 24, 'sagittis dui vel nisl duis ac nibh fusce lacus purus', 6560, 'in eleifend quam a odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (49, 20, 6, 'diam erat fermentum justo nec condimentum neque sapien placerat ante nulla', 8241, 'sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (50, 13, 7, 'ac consequat metus sapien ut nunc vestibulum ante ipsum primis in', 8899, 'pede ac diam cras pellentesque volutpat dui maecenas tristique est');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (51, 3, 2, 'at turpis a pede posuere nonummy integer non velit donec', 2075, 'primis in faucibus orci luctus et ultrices posuere cubilia curae nulla');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (52, 4, 37, 'hac habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla', 2765, 'felis donec semper sapien a libero nam dui proin leo');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (53, 26, 29, 'nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti', 6820, 'luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (54, 13, 34, 'nullam porttitor lacus at turpis donec posuere metus vitae ipsum aliquam', 7534, 'nulla integer pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (55, 19, 35, 'nunc proin at turpis a pede posuere nonummy integer non velit', 8471, 'duis at velit eu est congue elementum in hac habitasse platea dictumst morbi vestibulum velit id');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (56, 21, 23, 'in tempus sit amet sem fusce consequat nulla nisl nunc nisl', 4452, 'ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (57, 4, 5, 'tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl', 8805, 'ipsum aliquam non mauris morbi non lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (58, 1, 32, 'nulla integer pede justo lacinia eget tincidunt eget tempus vel', 9488, 'vulputate luctus cum sociis natoque penatibus et magnis dis parturient');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (59, 23, 12, 'elementum nullam varius nulla facilisi cras non velit nec nisi', 4994, 'odio donec vitae nisi nam ultrices libero non mattis pulvinar');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (60, 25, 10, 'pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor', 7969, 'quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (61, 20, 27, 'at ipsum ac tellus semper interdum mauris ullamcorper purus sit', 2861, 'commodo vulputate justo in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (62, 5, 9, 'vestibulum ac est lacinia nisi venenatis tristique fusce congue diam', 7659, 'amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (63, 17, 22, 'ut at dolor quis odio consequat varius integer ac leo', 9897, 'mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit amet nunc viverra');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (64, 2, 13, 'dui proin leo odio porttitor id consequat in consequat ut', 7951, 'hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget orci');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (65, 8, 3, 'bibendum felis sed interdum venenatis turpis enim blandit mi in', 6383, 'iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante nulla justo aliquam quis turpis eget elit sodales');
+insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (66, 12, 28, 'consequat nulla nisl nunc nisl duis bibendum felis sed interdum', 7962, 'potenti nullam porttitor lacus at turpis donec posuere metus vitae ipsum aliquam non mauris morbi non lectus aliquam');
 
 # Insurance Claim Table
 create table insurance_claim (
@@ -493,7 +571,7 @@ create table insurance_claim (
 	bill_id INT,
 	claim_patient_id INT,
 	insurance_id INT,
-	claim_date DATE,
+	claim_date VARCHAR(50),
 	claim_amount INT,
 	PRIMARY KEY (id),
 	FOREIGN KEY (bill_id) REFERENCES bill (id),
@@ -634,91 +712,12 @@ insert into insurance_claim (id, bill_id, claim_patient_id, insurance_id, claim_
 insert into insurance_claim (id, bill_id, claim_patient_id, insurance_id, claim_date, claim_amount) values (132, 29, 10, 2, '10/1/2019', 58108);
 insert into insurance_claim (id, bill_id, claim_patient_id, insurance_id, claim_date, claim_amount) values (133, 60, 21, 58, '11/28/2016', 52035);
 
-# Insurance Plan Table
-create table insurance_plan (
-	id INT,
-	provider_id INT,
-	patient_id INT,
-	plan_name TEXT,
-	yearly_cost INT,
-	covers TEXT,
-	PRIMARY KEY (id),
-	FOREIGN KEY (provider_id) REFERENCES insurance_company (id),
-	FOREIGN KEY (patient_id) REFERENCES patient (id)
-);
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (1, 21, 36, 'sollicitudin mi sit amet lobortis sapien sapien non mi integer ac', 2484, 'pede ac diam cras pellentesque volutpat dui maecenas tristique est et');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (2, 12, 29, 'sit amet eros suspendisse accumsan tortor quis turpis sed ante', 9222, 'cursus id turpis integer aliquet massa id lobortis convallis tortor risus dapibus augue vel accumsan tellus nisi eu');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (3, 3, 23, 'et tempus semper est quam pharetra magna ac consequat metus sapien', 6370, 'id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (4, 25, 27, 'nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque', 1743, 'sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (5, 20, 26, 'ipsum aliquam non mauris morbi non lectus aliquam sit amet diam', 2846, 'nec dui luctus rutrum nulla tellus in sagittis dui vel nisl duis ac');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (6, 23, 32, 'sed sagittis nam congue risus semper porta volutpat quam pede', 1119, 'in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (7, 2, 38, 'eu est congue elementum in hac habitasse platea dictumst morbi', 6314, 'tortor sollicitudin mi sit amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec dui');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (8, 6, 16, 'vel enim sit amet nunc viverra dapibus nulla suscipit ligula in', 7777, 'quis turpis eget elit sodales scelerisque mauris sit amet eros suspendisse');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (9, 17, 35, 'non pretium quis lectus suspendisse potenti in eleifend quam a odio', 2338, 'semper interdum mauris ullamcorper purus sit amet nulla quisque arcu libero rutrum');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (10, 14, 37, 'aenean fermentum donec ut mauris eget massa tempor convallis nulla', 5952, 'ligula suspendisse ornare consequat lectus in est risus auctor sed tristique in');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (11, 4, 3, 'enim leo rhoncus sed vestibulum sit amet cursus id turpis integer', 2403, 'sit amet lobortis sapien sapien non mi integer ac neque duis');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (12, 18, 34, 'suspendisse potenti in eleifend quam a odio in hac habitasse', 6506, 'tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (13, 16, 4, 'luctus et ultrices posuere cubilia curae duis faucibus accumsan odio', 3362, 'sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (14, 1, 9, 'sed interdum venenatis turpis enim blandit mi in porttitor pede', 7279, 'in eleifend quam a odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla mollis molestie');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (15, 15, 24, 'donec ut dolor morbi vel lectus in quam fringilla rhoncus', 4366, 'cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (16, 8, 18, 'vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa', 7606, 'in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (17, 22, 6, 'luctus et ultrices posuere cubilia curae duis faucibus accumsan odio', 4520, 'tellus nulla ut erat id mauris vulputate elementum nullam varius');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (18, 19, 25, 'vestibulum eget vulputate ut ultrices vel augue vestibulum ante ipsum primis', 9041, 'aliquet at feugiat non pretium quis lectus suspendisse potenti in eleifend');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (19, 24, 30, 'adipiscing elit proin risus praesent lectus vestibulum quam sapien varius ut', 1390, 'nisi volutpat eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (20, 26, 2, 'vel pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus', 8187, 'vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (21, 7, 13, 'donec dapibus duis at velit eu est congue elementum in', 7886, 'amet sem fusce consequat nulla nisl nunc nisl duis bibendum felis sed');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (22, 10, 19, 'fusce consequat nulla nisl nunc nisl duis bibendum felis sed', 5489, 'habitasse platea dictumst morbi vestibulum velit id pretium iaculis diam erat fermentum justo nec condimentum neque');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (23, 9, 5, 'metus vitae ipsum aliquam non mauris morbi non lectus aliquam', 4008, 'sagittis nam congue risus semper porta volutpat quam pede lobortis ligula sit amet');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (24, 13, 21, 'pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus in', 5983, 'phasellus sit amet erat nulla tempus vivamus in felis eu sapien cursus vestibulum proin eu mi nulla ac enim in');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (25, 5, 10, 'molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget', 8755, 'volutpat dui maecenas tristique est et tempus semper est quam pharetra magna ac consequat metus sapien ut nunc vestibulum');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (26, 11, 33, 'mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit', 6646, 'lacus purus aliquet at feugiat non pretium quis lectus suspendisse');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (27, 11, 11, 'purus sit amet nulla quisque arcu libero rutrum ac lobortis', 8540, 'nonummy integer non velit donec diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (28, 2, 15, 'mauris lacinia sapien quis libero nullam sit amet turpis elementum ligula', 7669, 'sit amet justo morbi ut odio cras mi pede malesuada');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (29, 8, 17, 'ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris', 1851, 'viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (30, 22, 14, 'platea dictumst etiam faucibus cursus urna ut tellus nulla ut', 9977, 'eros suspendisse accumsan tortor quis turpis sed ante vivamus tortor duis mattis');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (31, 14, 12, 'in quis justo maecenas rhoncus aliquam lacus morbi quis tortor', 3377, 'libero ut massa volutpat convallis morbi odio odio elementum eu');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (32, 25, 8, 'feugiat et eros vestibulum ac est lacinia nisi venenatis tristique', 2836, 'maecenas tincidunt lacus at velit vivamus vel nulla eget eros elementum pellentesque quisque porta volutpat');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (33, 18, 22, 'amet diam in magna bibendum imperdiet nullam orci pede venenatis non', 9948, 'lacus purus aliquet at feugiat non pretium quis lectus suspendisse potenti');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (34, 15, 1, 'est quam pharetra magna ac consequat metus sapien ut nunc', 3411, 'in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non pretium quis');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (35, 5, 31, 'potenti nullam porttitor lacus at turpis donec posuere metus vitae', 6772, 'vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non pretium');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (36, 9, 7, 'hac habitasse platea dictumst etiam faucibus cursus urna ut tellus', 7317, 'amet nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus semper interdum mauris ullamcorper');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (37, 19, 28, 'at velit eu est congue elementum in hac habitasse platea', 4357, 'vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget orci');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (38, 1, 20, 'justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis', 8307, 'neque sapien placerat ante nulla justo aliquam quis turpis eget');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (39, 10, 38, 'lacus morbi quis tortor id nulla ultrices aliquet maecenas leo', 1584, 'convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (40, 23, 8, 'gravida nisi at nibh in hac habitasse platea dictumst aliquam', 5093, 'eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (41, 21, 31, 'vitae ipsum aliquam non mauris morbi non lectus aliquam sit amet', 9551, 'mauris lacinia sapien quis libero nullam sit amet turpis elementum ligula vehicula consequat');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (42, 7, 4, 'curae donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi', 9563, 'neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo sit amet sapien');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (43, 6, 18, 'suscipit nulla elit ac nulla sed vel enim sit amet', 3469, 'sed augue aliquam erat volutpat in congue etiam justo etiam pretium iaculis justo in');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (44, 16, 25, 'posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet', 5453, 'in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (45, 12, 14, 'mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh', 2014, 'consectetuer adipiscing elit proin risus praesent lectus vestibulum quam sapien varius');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (46, 24, 17, 'ipsum integer a nibh in quis justo maecenas rhoncus aliquam', 7906, 'gravida nisi at nibh in hac habitasse platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (47, 26, 33, 'nulla nisl nunc nisl duis bibendum felis sed interdum venenatis turpis', 5794, 'fusce congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (48, 17, 24, 'sagittis dui vel nisl duis ac nibh fusce lacus purus', 6560, 'in eleifend quam a odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (49, 20, 6, 'diam erat fermentum justo nec condimentum neque sapien placerat ante nulla', 8241, 'sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (50, 13, 7, 'ac consequat metus sapien ut nunc vestibulum ante ipsum primis in', 8899, 'pede ac diam cras pellentesque volutpat dui maecenas tristique est');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (51, 3, 2, 'at turpis a pede posuere nonummy integer non velit donec', 2075, 'primis in faucibus orci luctus et ultrices posuere cubilia curae nulla');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (52, 4, 37, 'hac habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla', 2765, 'felis donec semper sapien a libero nam dui proin leo');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (53, 26, 29, 'nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti', 6820, 'luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (54, 13, 34, 'nullam porttitor lacus at turpis donec posuere metus vitae ipsum aliquam', 7534, 'nulla integer pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (55, 19, 35, 'nunc proin at turpis a pede posuere nonummy integer non velit', 8471, 'duis at velit eu est congue elementum in hac habitasse platea dictumst morbi vestibulum velit id');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (56, 21, 23, 'in tempus sit amet sem fusce consequat nulla nisl nunc nisl', 4452, 'ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (57, 4, 5, 'tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl', 8805, 'ipsum aliquam non mauris morbi non lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (58, 1, 32, 'nulla integer pede justo lacinia eget tincidunt eget tempus vel', 9488, 'vulputate luctus cum sociis natoque penatibus et magnis dis parturient');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (59, 23, 12, 'elementum nullam varius nulla facilisi cras non velit nec nisi', 4994, 'odio donec vitae nisi nam ultrices libero non mattis pulvinar');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (60, 25, 10, 'pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor', 7969, 'quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (61, 20, 27, 'at ipsum ac tellus semper interdum mauris ullamcorper purus sit', 2861, 'commodo vulputate justo in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (62, 5, 9, 'vestibulum ac est lacinia nisi venenatis tristique fusce congue diam', 7659, 'amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (63, 17, 22, 'ut at dolor quis odio consequat varius integer ac leo', 9897, 'mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit amet nunc viverra');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (64, 2, 13, 'dui proin leo odio porttitor id consequat in consequat ut', 7951, 'hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget orci');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (65, 8, 3, 'bibendum felis sed interdum venenatis turpis enim blandit mi in', 6383, 'iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante nulla justo aliquam quis turpis eget elit sodales');
-insert into insurance_plan (id, provider_id, patient_id, plan_name, yearly_cost, covers) values (66, 12, 28, 'consequat nulla nisl nunc nisl duis bibendum felis sed interdum', 7962, 'potenti nullam porttitor lacus at turpis donec posuere metus vitae ipsum aliquam non mauris morbi non lectus aliquam');
-
 # Medication Table
 create table medication (
 	id INT,
-	drug_name VARCHAR(50),
-	chemical_name VARCHAR(50),
-	manufacturer VARCHAR(50),
+	drug_name VARCHAR(200),
+	chemical_name VARCHAR(500),
+	manufacturer VARCHAR(200),
 	ingestion VARCHAR(6),
 	side_effects TEXT,
 	PRIMARY KEY (id)
@@ -939,7 +938,7 @@ create table patient_diagnosis (
 	patient_id INT,
 	doctor_id INT,
 	disease_id INT,
-	diagnosis_date DATE,
+	diagnosis_date VARCHAR(50),
 	notes TEXT,
 	primary key (id, patient_id, doctor_id, disease_id),
 	foreign key (patient_id) references patient (id),
@@ -1106,7 +1105,7 @@ create table patient_prescription (
 	patient_id INT,
 	doctor_id INT,
 	medication_id INT,
-	date_prescribed DATE,
+	date_prescribed VARCHAR(50),
 	ingestion_freq VARCHAR(9),
 	PRIMARY KEY (id, patient_id, doctor_id, medication_id),
 	FOREIGN KEY (patient_id) REFERENCES patient (id),
@@ -1284,7 +1283,7 @@ create table appointment (
 	id INT,
 	patient_id INT,
 	doctor_id INT,
-	date DATE,
+	date VARCHAR(50),
 	time VARCHAR(50),
 	symptoms TEXT,
 	PRIMARY KEY (id, patient_id, doctor_id),
@@ -1440,7 +1439,7 @@ insert into appointment (id, patient_id, doctor_id, date, time, symptoms) values
 create table assigned_nurse (
 	doctor_id INT,
 	nurse_id INT,
-	assign_date DATE,
+	assign_date VARCHAR(50),
 	PRIMARY KEY (doctor_id, nurse_id),
 	FOREIGN KEY (doctor_id) REFERENCES doctor (id),
 	FOREIGN KEY (nurse_id) REFERENCES nurse (id)
