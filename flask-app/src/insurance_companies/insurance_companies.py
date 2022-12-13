@@ -3,18 +3,24 @@ import json
 from src import db
 
 
-products = Blueprint('products', __name__)
+from flask import Blueprint, request, jsonify, make_response
+import json
+from src import db
 
-# Get all the products from the database
-@products.route('/products', methods=['GET'])
-def get_products():
-    # get a cursor object from the database
+
+insurance = Blueprint('insurance', __name__)
+
+# get the pending insurance claims
+@insurance.route('/pendingclaims')
+def get_pending_claims():
     cursor = db.get_db().cursor()
-
-    # use cursor to query the database for a list of products
-    cursor.execute('select productCode, productName, productVendor from products')
-
-    # grab the column headers from the returned data
+    query = '''
+        SELECT ic.id, ic.claim_date, ic.claim_amount, p.first_name, p.last_name, p.id as 'patientid'
+        FROM insurance_claim ic JOIN insurance_plan ip ON ic.insurance_id = ip.id JOIN patient p ON ip.patient_id = p.id
+        WHERE ic.completed = False;
+    '''
+    cursor.execute(query)
+       # grab the column headers from the returned data
     column_headers = [x[0] for x in cursor.description]
 
     # create an empty dictionary object to use in 
@@ -31,16 +37,42 @@ def get_products():
 
     return jsonify(json_data)
 
-# get the top 5 products from the database
-@products.route('/top5products')
-def get_most_pop_products():
+# get the completed insurance claims
+@insurance.route('/completedclaims')
+def get_completed_claims():
     cursor = db.get_db().cursor()
     query = '''
-        SELECT p.productCode, productName, sum(quantityOrdered) as totalOrders
-        FROM products p JOIN orderdetails od on p.productCode = od.productCode
-        GROUP BY p.productCode, productName
-        ORDER BY totalOrders DESC
-        LIMIT 5;
+        SELECT ic.id, ic.claim_date, ic.claim_amount, p.first_name, p.last_name, p.id as 'patientid'
+        FROM insurance_claim ic JOIN insurance_plan ip ON ic.insurance_id = ip.id JOIN patient p ON ip.patient_id = p.id
+        WHERE ic.completed = True;
+    '''
+    cursor.execute(query)
+       # grab the column headers from the returned data
+    column_headers = [x[0] for x in cursor.description]
+
+    # create an empty dictionary object to use in 
+    # putting column headers together with data
+    json_data = []
+
+    # fetch all the data from the cursor
+    theData = cursor.fetchall()
+
+    # for each of the rows, zip the data elements together with
+    # the column headers. 
+    for row in theData:
+        json_data.append(dict(zip(column_headers, row)))
+
+    return jsonify(json_data)
+
+# pull up claim information and premium calculator
+@insurance.route('/premiums/<customerid>')
+def get_completed_claims(customerid):
+    cursor = db.get_db().cursor()
+    query = f'''
+        SELECT p.first_name, p.last_name, p.birth_date, p.sex, p.medical_history, p.address,
+            p.id, d.first_name AS DrFirst, d.last_name AS DrLast, ip.yearly_cost, ip.covers
+        FROM insurance_plan ip JOIN patient p ON ip.id = p.id JOIN doctor d ON d.id = p.primary_care_id
+        WHERE ip.id = {customerid};
     '''
     cursor.execute(query)
        # grab the column headers from the returned data
