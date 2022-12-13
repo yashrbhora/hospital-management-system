@@ -6,7 +6,7 @@ from src import db
 doctors = Blueprint('doctors', __name__)
 
 # Get different medications
-@patients.route('/medications', methods=['GET'])
+@doctors.route('/medications', methods=['GET'])
 def get_doc_name():
     cursor = db.get_db().cursor()
     query = '''SELECT id as value, drug_name as label from medication'''
@@ -56,3 +56,31 @@ def schedule_appt():
     db.get_db().commit()
 
     return 'Success.'
+
+# pull up appointment information
+@doctors.route('/appointments/<doctorid>')
+def get_appointments(doctorid):
+    cursor = db.get_db().cursor()
+    query = f'''
+        SELECT p.id, p.first_name AS 'pat_first', p.last_name AS 'pat_last', 
+            d.first_name, d.last_name, a.id, a.date, a.time, a.symptoms
+        FROM appointment a JOIN doctor d on a.doctor_id = d.id JOIN patient p on p.id = a.patient_id
+        WHERE a.doctor_id = {doctorid};
+    '''
+    cursor.execute(query)
+       # grab the column headers from the returned data
+    column_headers = [x[0] for x in cursor.description]
+
+    # create an empty dictionary object to use in 
+    # putting column headers together with data
+    json_data = []
+
+    # fetch all the data from the cursor
+    theData = cursor.fetchall()
+
+    # for each of the rows, zip the data elements together with
+    # the column headers. 
+    for row in theData:
+        json_data.append(dict(zip(column_headers, row)))
+
+    return jsonify(json_data)
