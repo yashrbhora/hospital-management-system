@@ -3,59 +3,56 @@ import json
 from src import db
 
 
-products = Blueprint('products', __name__)
+doctors = Blueprint('doctors', __name__)
 
-# Get all the products from the database
-@products.route('/products', methods=['GET'])
-def get_products():
-    # get a cursor object from the database
+# Get different medications
+@patients.route('/medications', methods=['GET'])
+def get_doc_name():
     cursor = db.get_db().cursor()
-
-    # use cursor to query the database for a list of products
-    cursor.execute('select productCode, productName, productVendor from products')
-
-    # grab the column headers from the returned data
-    column_headers = [x[0] for x in cursor.description]
-
-    # create an empty dictionary object to use in 
-    # putting column headers together with data
-    json_data = []
-
-    # fetch all the data from the cursor
-    theData = cursor.fetchall()
-
-    # for each of the rows, zip the data elements together with
-    # the column headers. 
-    for row in theData:
-        json_data.append(dict(zip(column_headers, row)))
-
-    return jsonify(json_data)
-
-# get the top 5 products from the database
-@products.route('/top5products')
-def get_most_pop_products():
-    cursor = db.get_db().cursor()
-    query = '''
-        SELECT p.productCode, productName, sum(quantityOrdered) as totalOrders
-        FROM products p JOIN orderdetails od on p.productCode = od.productCode
-        GROUP BY p.productCode, productName
-        ORDER BY totalOrders DESC
-        LIMIT 5;
-    '''
+    query = '''SELECT id as value, drug_name as label from medication'''
     cursor.execute(query)
-       # grab the column headers from the returned data
-    column_headers = [x[0] for x in cursor.description]
-
-    # create an empty dictionary object to use in 
-    # putting column headers together with data
+    row_headers = [x[0] for x in cursor.description]
     json_data = []
-
-    # fetch all the data from the cursor
     theData = cursor.fetchall()
-
-    # for each of the rows, zip the data elements together with
-    # the column headers. 
     for row in theData:
-        json_data.append(dict(zip(column_headers, row)))
+        json_data.append(dict(zip(row_headers, row)))
 
-    return jsonify(json_data)
+    the_response = make_response(jsonify(json_data))
+    the_response.status_code = 200
+    the_response.mimetype = 'application/json'
+
+    return the_response
+
+# Insert patient precription
+@doctors.route('/prescription', methods=['POST'])
+def schedule_appt():
+    current_app.logger.info(request.form)
+    cursor = db.get_db().cursor()
+
+    # Grabbing info form request forms
+    fname = request.form['fname']
+    lname = request.form['lname']
+    doc_id = request.form['doc_id']
+    pre_date = request.form['pre_date']
+    dosage = request.form['dosage']
+    pmed_id = request.form['pmed']
+
+    # Find corresponding patient id in database
+    cursor.execute(f'select id from patient where (first_name = \"{fname}\" AND last_name = \"{lname}\")')
+    theData = cursor.fetchall()
+    for row in theData:
+        p_id = row[0]
+
+    # Generate latest id for new prescription
+    cursor.execute('select id from patient_prescription order by id desc limit 1')
+    theData = cursor.fetchall()
+    pre_id = theData[0][0] + 1
+
+    # Execute query
+    pre_query = f'''INSERT INTO patient_prescription(id, patient_id, doctor_id, medication_id, date_prescribed, 
+                    ingestion_freq)
+                    VALUES({pre_id}, {p_id}, {doc_id}, \"{pmed_id}\", \"{pre_date}\", \"{dosage}\")'''
+    cursor.execute(pre_query)
+    db.get_db().commit()
+
+    return 'Success.'
