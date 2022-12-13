@@ -66,7 +66,7 @@ def get_completed_claims():
 
 # pull up claim information and premium calculator
 @insurance.route('/premiums/<customerid>')
-def get_completed_claims(customerid):
+def premium(customerid):
     cursor = db.get_db().cursor()
     query = f'''
         SELECT p.first_name, p.last_name, p.birth_date, p.sex, p.medical_history, p.address,
