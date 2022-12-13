@@ -139,3 +139,26 @@ def register_patient():
     
     return 'Success.'
 
+# show patient information given ID
+@patients.route('/patient/<patient_id>', methods=['GET'])
+def get_customer(patient_id):
+    cursor = db.get_db().cursor()
+    query = f'''
+        SELECT p.id, p.emergency_id, p.first_name, p.last_name, p.birth_date, p.age, p.sex, p.address,
+            p.language, p.medical_history, p.primary_care_id, d.first_name AS 'DrFirst',
+            d.last_name AS 'DrLast', ec.first_name AS 'ECFN', ec.last_name AS 'ECLN',
+            ec.email AS 'ECEmail', ec.contact AS 'ECContact'
+        FROM patient p JOIN emergency_contact ec ON p.emergency_id = ec.id JOIN doctor d on p.primary_care_id = d.id
+        WHERE p.id = {patient_id}
+    '''
+    cursor.execute(query)
+    row_headers = [x[0] for x in cursor.description]
+    json_data = []
+    theData = cursor.fetchall()
+    for row in theData:
+        json_data.append(dict(zip(row_headers, row)))
+    the_response = make_response(jsonify(json_data))
+    the_response.status_code = 200
+    the_response.mimetype = 'application/json'
+    return the_response
+
